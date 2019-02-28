@@ -1,0 +1,13 @@
+.DS_Store
+.dart_tool/
+
+.packages
+.pub/
+
+build/
+
+android/.classpath
+android/.project
+.idea/
+
+android/.settings/org.eclipse.buildship.core.prefs
