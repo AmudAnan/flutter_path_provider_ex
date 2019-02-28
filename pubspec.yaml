@@ -1,6 +1,6 @@
 name: path_provider_ex
-description: An Android path provider for Flutter that provides root and app files directory for both &quot;external storage&quot; (internal flash) and SD card (if present), as well as available space for each storage.
-version: 1.0.0
+description: App files directory, root storage, and available space for ext storage and SD card on Android
+version: 1.0.1
 author: Yoav Rofé <support@amudanan.co.il>
 homepage: https://github.com/AmudAnan/flutter_path_provider_ex
 
