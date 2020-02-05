@@ -17,7 +17,7 @@ public class StorageUtils {
       long availableBytes = statFs.getAvailableBlocksLong() * statFs.getBlockSizeLong();
       HashMap<String, Object> storageData = new HashMap<>();
       try {
-        String rootPath = file.getParentFile().getParentFile().getParentFile().getParentFile().getAbsolutePath();
+        String rootPath = ""; //file.getParentFile().getParentFile().getParentFile().getParentFile().getAbsolutePath();
         storageData.put("rootPath", rootPath);
       } catch (Exception e) {
       }
