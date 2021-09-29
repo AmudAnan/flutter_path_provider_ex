@@ -5,31 +5,35 @@ import java.util.HashMap;
 
 import android.content.Context;
 
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /** PathProviderExPlugin */
-public class PathProviderExPlugin implements MethodCallHandler {
-  private final Registrar mRegistrar;
+public class PathProviderExPlugin implements MethodCallHandler, FlutterPlugin {
+  private MethodChannel channel;
+  private static final String CHANNEL_NAME = "path_provider_ex";
+  private Context applicationContext;
 
-  /** Plugin registration. */
-  public static void registerWith(Registrar registrar) {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "path_provider_ex");
-    PathProviderExPlugin instance = new PathProviderExPlugin(registrar);
-    channel.setMethodCallHandler(instance);
+  @Override
+  public void onAttachedToEngine(FlutterPluginBinding flutterPluginBinding) {
+    applicationContext = flutterPluginBinding.getApplicationContext();
+    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), CHANNEL_NAME);
+    channel.setMethodCallHandler(this);
   }
 
-  private PathProviderExPlugin(Registrar registrar) {
-    this.mRegistrar = registrar;
+  @Override
+  public void onDetachedFromEngine(FlutterPluginBinding flutterPluginBinding) {
+    channel.setMethodCallHandler(null);
+    applicationContext = null;
   }
 
   @Override
   public void onMethodCall(MethodCall call, Result result) {
     if (call.method.equals("getExtStorageData")) {
-      ArrayList<HashMap> reply = StorageUtils.getExternalStorageAvailableData(mRegistrar.context());
+      ArrayList<HashMap> reply = StorageUtils.getExternalStorageAvailableData(applicationContext);
       result.success(reply);
 
     } else {

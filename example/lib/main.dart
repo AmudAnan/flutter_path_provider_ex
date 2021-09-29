@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    List<StorageInfo> storageInfo;
+    late List<StorageInfo> storageInfo;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       storageInfo = await PathProviderEx.getStorageInfo();
@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
             Text(
                 'SD Card AvailableGB:\n ${(_storageInfo.length > 1) ? _storageInfo[1].availableGB : "unavailable"}\n'),
           ],
-        ) ,
+        ),
       ),
     );
   }
