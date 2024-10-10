@@ -22,7 +22,8 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    namespace 'com.github.najeira.path_provider_ex' 
+    compileSdkVersion 34
 
     defaultConfig {
         minSdkVersion 16
